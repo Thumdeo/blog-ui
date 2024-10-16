@@ -1,0 +1,93 @@
+<div class="container">
+    <div>
+
+        <button mat-raised-button color="primary" routerLink="/feed" style="align-content: center;">Feed</button>
+
+
+    </div>
+    <form #Blogpost="ngForm" (ngSubmit)="saveBlog(Blogpost)">
+        <mat-card-header
+            style="font-size: 30px; margin: 20px; font: bold; font-family: Arial, Helvetica, sans-serif;">Post</mat-card-header>
+        <mat-card appearance="outlined">
+            <mat-card-content>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label> UserID</mat-label>
+                        <input matInput placeholder="UserID" name="UserID" [(ngModel)]="blogger.userID" disabled>
+
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>UserName</mat-label>
+                        <input matInput placeholder="UserName" name="UserName" [(ngModel)]="blogger.userName">
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input matInput placeholder="Title" name="Title" [(ngModel)]="blogger.title">
+                    </mat-form-field>
+                </p>
+
+                <mat-form-field style="width: 100%;">
+                    <mat-label>File Upload</mat-label>
+
+                    <!-- Button to open file dialog -->
+                    <button mat-icon-button matPrefix (click)="f_input.click()">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+
+                    <!-- Display the names of the selected files -->
+                    <input type="text" readonly matInput [formControl]="display">
+
+                    <!-- Hidden file input field -->
+                    <input type="file" multiple hidden #f_input (change)="handleFileInputChange(f_input.files)" />
+
+                    <!-- Error message -->
+                    <mat-error *ngIf="display.hasError('required')">This field is required</mat-error>
+
+
+                    <!-- Display selected files side by side -->
+                    <div class="file-container" *ngIf="fileNames.length > 0">
+                        <div *ngFor="let fileName of fileNames; let i = index" class="file-item">
+                            <!-- File details -->
+                            <div class="file-details">
+                                <span>{{ fileName }}</span>
+                                <button mat-button color="warn" (click)="removeFile(i)">Remove</button>
+                            </div>
+
+                            <!-- Image preview (if file is an image) -->
+                            <img *ngIf="isImage(fileName)" [src]="filePreviews[i]" alt="Image Preview"
+                                class="file-preview" />
+                        </div>
+                    </div>
+
+                    <!-- Save button -->
+                    <button mat-raised-button color="primary" (click)="saveFiles()">Save Files</button>
+
+                </mat-form-field>
+
+
+                <p>
+                    <mat-form-field class="example-full-width" name="BlogPost" [(ngModel)]="blogger.blogPost">
+                        <mat-label>BlogPost</mat-label>
+                        <textarea matInput placeholder="Post...."></textarea>
+                    </mat-form-field>
+                </p>
+
+
+                <div class="text-center mt-4">
+                    <button mat-raised-button type="reset">Clear</button>
+                    <button mat-raised-button color="primary" class="m-3 w-px-90">Save</button>
+                </div>
+
+            </mat-card-content>
+
+
+
+        </mat-card>
+    </form>
+</div>

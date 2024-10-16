@@ -1,0 +1,41 @@
+mat-form-field{
+  /* background-color: red; */
+ 
+  width: 100%;
+}
+.file-container {
+  display: flex;
+  flex-wrap: wrap;  /* Wrap to next line if too many files */
+  gap: 20px;  /* Spacing between file items */
+  margin-top: 20px;
+}
+
+.file-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px;  /* Set a maximum width for each file item */
+}
+
+.file-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.file-preview {
+  max-width: 100%;
+  margin-top: 10px;
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+  align-content: center;
+  align-self: center;
+  margin: 0 10px;
+}
+
+.example-disabled {
+  display: inline-block;
+}
